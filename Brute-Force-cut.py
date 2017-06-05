@@ -3,12 +3,12 @@ import numpy as np
 
 # Read source image.
 im_src = cv2.imread('template.jpg')
-# Four corners of the book in source image
+# Four corners
 pts_src = np.array([[141, 131], [480, 159], [493, 630], [64, 601]])
 
 # Read destination image.
-im_dst = cv2.imread('find.jpg')
-# Four corners of the book in destination image.
+im_dst = cv2.imread('find2.jpg')
+# Four corners
 pts_dst = np.array([[318, 256], [534, 372], [316, 670], [73, 473]])
 
 # Calculate Homography
@@ -19,6 +19,8 @@ im_out = cv2.warpPerspective(im_src, h, (im_dst.shape[1], im_dst.shape[0]))
 
 # Display images
 #cv2.imshow("Warped Source Image", im_out)
+cv2.imwrite("Destination Image.png",im_dst)
+
 cv2.imwrite("Warped-Source-Image.png",im_out)
 
 
