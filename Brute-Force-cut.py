@@ -2,12 +2,12 @@ import cv2
 import numpy as np
 
 # Read source image.
-im_src = cv2.imread('template.jpg')
+im_src = cv2.imread('find2.jpg')
 # Four corners
 pts_src = np.array([[141, 131], [480, 159], [493, 630], [64, 601]])
 
 # Read destination image.
-im_dst = cv2.imread('find2.jpg')
+im_dst = cv2.imread('template.jpg')
 # Four corners
 pts_dst = np.array([[318, 256], [534, 372], [316, 670], [73, 473]])
 
