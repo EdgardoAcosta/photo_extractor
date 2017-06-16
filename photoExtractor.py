@@ -4,7 +4,8 @@ import numpy as np
 # Import the Classifiers
 face_cascade = cv2.CascadeClassifier('HaarCascades/haarcascade_frontalface_default.xml');
 eye_cascade = cv2.CascadeClassifier('HaarCascades/haarcascade_eye.xml')
- 
+columns = 130
+rows = 160
 # Load the videocapture
 cap = cv2.VideoCapture(0)
 # Initialize the counter of images to been taken
@@ -23,7 +24,7 @@ while True:
         # If the height and width are as expected, and haven't been taken 10 correct photos yet:
         if counter < 10 and h >= 86 and h <= 90 and w >= 86 and w <= 90:
             # Crop the photo of the ID card:
-            crop_img = img[y-32:y+h+68,x-28:x+w+29]
+            crop_img = img[y-30:y+h+70,x-28:x+w+29]
             # Apply Haar Cascade to the eyes in the cropped images in gray scale:
             eye_gray = cv2.cvtColor(crop_img, cv2.COLOR_BGR2GRAY)
             eyes = eye_cascade.detectMultiScale(eye_gray)
@@ -36,6 +37,7 @@ while True:
             if eyesCounter >= 2:
                 # Save the cropped image and increment the counter
                 name = 'cropped_image_' + str(counter)
+                crop_img = cv2.resize(crop_img, (columns, rows))
                 cv2.imwrite(str(name)+'.png', crop_img)
                 counter = counter + 1;
     # Always show what the webcam is seeing, and clase the program when ESC is pressed or when we reach the 10 img cropped:
