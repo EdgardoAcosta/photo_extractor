@@ -37,7 +37,6 @@ while True:
             if eyesCounter >= 2:
                 # Save the cropped image and increment the counter
                 name = 'cropped_image_' + str(counter)
-                crop_img = cv2.resize(crop_img, (columns, rows))
                 cv2.imwrite(str(name)+'.png', crop_img)
                 counter = counter + 1;
     # Always show what the webcam is seeing, and clase the program when ESC is pressed or when we reach the 10 img cropped:
