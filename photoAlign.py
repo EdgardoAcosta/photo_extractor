@@ -4,6 +4,14 @@ import numpy as np
 # Import the Classifiers
 face_cascade = cv2.CascadeClassifier('HaarCascades/haarcascade_frontalface_default.xml');
 eye_cascade = cv2.CascadeClassifier('HaarCascades/haarcascade_eye.xml')
+
+#Base image
+outImg = cv2.imread('base_img.png')
+
+#aligner:
+def align(img):
+    
+
 # Load the videocapture
 cap = cv2.VideoCapture(0)
 # Initialize the counter of images to been taken
@@ -31,22 +39,11 @@ while True:
             for(ex, ey, ew, eh) in eyes:
                 # Increment the counter of eyes
                 eyesCounter = eyesCounter + 1;
-                if(eyesCounter == 2):
-                    e2x = ex
-                    e2y = ey
-                elif(eyesCounter == 1):
-                    e1x = ex
-                    e1y = ey
             # If the number of eyes is equal to (or higher than) 2:
             if eyesCounter >= 2:
-                # Save the cropped image and increment the counter
-                name = 'cropped_image_' + str(counter)
-                cv2.imwrite(str(name)+'.jpg', crop_img)
-                counter = counter + 1
-                print("Imagen: ", counter)
-                print("\tOjo 1 x: ", e1x, " - Ojo 1 y: ", e1y)
-                print("\tOjo 2 x: ", e2x, " - Ojo 2 y: ", e2y)
-                print()
+                # Align the image as the pattern one:
+                align(crop_img)
+                counter = counter + 1;
     # Always show what the webcam is seeing, and clase the program when ESC is pressed or when we reach the 10 img cropped:
     cv2.imshow('Webcam Scanner', img)
     k = cv2.waitKey(30) & 0xff
