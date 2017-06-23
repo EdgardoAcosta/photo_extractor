@@ -3,7 +3,6 @@ import numpy as np
 from best_image import get_image
 import matplotlib.pyplot as plt
 from matplotlib import pyplot
-
 # Import the Classifiers
 face_cascade = cv2.CascadeClassifier('HaarCascades/haarcascade_frontalface_default.xml');
 eye_cascade = cv2.CascadeClassifier('HaarCascades/haarcascade_eye.xml')
@@ -20,12 +19,13 @@ while True:
     faces = face_cascade.detectMultiScale(gray, 1.3, 5)
     # For all the different dimentions of faces we find in the image:
     for(x, y, w, h) in faces:
+
         # Add some values to the face detected in order to cover all the rectangle of the picture in the ID card
-        cv2.rectangle(img, (x-30, y-33), (x+w+30, y+h+70), (255, 0, 0), 2)
+        cv2.rectangle(img, (x-25, y-30), (x+w+25, y+h+60), (255, 0, 0), 2)
         # If the height and width are as expected, and haven't been taken 10 correct photos yet:
-        if counter < 10 and h >= 86 and h <= 90 and w >= 86 and w <= 90:
+        if counter < 10 and h >= 86 and h <= 88 and w >= 86 and w <= 88:
             # Crop the photo of the ID card:
-            crop_img = img[y-30:y+h+70,x-28:x+w+29]
+            crop_img = img[y-27:y+h+70,x-24:x+w+24]
             # Apply Haar Cascade to the eyes in the cropped images in gray scale:
             eye_gray = cv2.cvtColor(crop_img, cv2.COLOR_BGR2GRAY)
             eyes = eye_cascade.detectMultiScale(eye_gray)
