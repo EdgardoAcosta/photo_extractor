@@ -1,6 +1,5 @@
 *.png
-.idea/*
 cropped_image/*
-compare.py
 cropped_image/
 __pycached__/
+.idea/
