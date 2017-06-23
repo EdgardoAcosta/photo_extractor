@@ -15,15 +15,8 @@ images = {}
 colum = 130
 rows = 160
 num_images = 20
-
-base = cv2.cvtColor(cv2.resize(cv2.imread("base.png"), (colum, rows)) , cv2.COLOR_BGR2RGB)
-
-hist = cv2.calcHist([base], [0, 1, 2], None, [8, 8, 8],
-                    [0, 256, 0, 256, 0, 256])
-
-cv2.normalize(hist, hist)
-base_hist = hist.flatten()
-
+nbins = 400
+bins = np.linspace(0, 1, nbins+1)
 #num_images
 # loop over the image paths
 for x in range(0,num_images):
@@ -40,15 +33,28 @@ for x in range(0,num_images):
     index["img"+str(x)+".png"] = hist
 
 
-"""
-plt.title("Hist")
-plt.subplot(221), plt.plot(index["img0.png"], color='r')
-plt.subplot(222), plt.plot(index["img1.png"], color='g')
-plt.subplot(223), plt.plot(index["img2.png"], color='b')
-plt.subplot(224), plt.plot(index["img3.png"], color='y')
-plt.show()
-"""
+print(np.digitize(index["img0.png"], bins))
 
+actual_image = "NONE"
+best = (( (np.digitize(index["img0.png"], bins) ) > 1).sum())
+temp = 0
+for (k, hist) in index.items():
+    temp = (( (np.digitize(index[k], bins) ) > 1).sum())
+    if temp > best:
+        best = temp
+        actual_image = k
+
+print(actual_image)
+
+
+
+plt.subplot(221), plt.imshow(images[actual_image])
+plt.subplot(221).axis("off")
+plt.subplot(222), plt.plot(index[actual_image], color='g')
+plt.show()
+
+
+"""
 # OpenCV methods for histogram comparison
 OPENCV_METHODS = (
     ("Correlation", cv2.HISTCMP_CORREL),
@@ -72,11 +78,7 @@ for (methodName, method) in OPENCV_METHODS:
         for (k, hist) in index.items():
             # compute the distance between the two par of histograms
             # in each convination of images
-            d = cv2.compareHist(base_hist, hist, method)
-            if d > temp:
-                best = k
-                temp = d
-            """
+            
             for (j,hist2) in index.items():
                 if k != j:
                     d = cv2.compareHist(index[k], hist2, method)
@@ -85,7 +87,7 @@ for (methodName, method) in OPENCV_METHODS:
                         imag1 = k
                         imag2 = j
                         temp = d
-"""
+
 plt.title("Hist")
 plt.subplot(221), plt.imshow(base)
 plt.subplot(221).axis("off")
@@ -95,13 +97,13 @@ plt.subplot(223).axis("off")
 plt.subplot(224), plt.plot(index[best], color='y')
 plt.show()
 
-
+"""
 
 """
-            results[k] = d
+results[k] = d
 
         # sort the results
         results = sorted([(v, k) for (k, v) in results.items()], reverse=reverse)
         #print(results)
 
-      """
+"""

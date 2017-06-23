@@ -1,5 +1,8 @@
 import cv2
 import numpy as np
+from best_image import get_image
+import matplotlib.pyplot as plt
+from matplotlib import pyplot
 
 # Import the Classifiers
 face_cascade = cv2.CascadeClassifier('HaarCascades/haarcascade_frontalface_default.xml');
@@ -40,8 +43,8 @@ while True:
             # If the number of eyes is equal to (or higher than) 2:
             if eyesCounter >= 2:
                 # Save the cropped image and increment the counter
-                name = 'cropped_image_' + str(counter)
-                cv2.imwrite(str(name)+'.jpg', crop_img)
+                name = 'photos/cropped_image_' + str(counter)
+                cv2.imwrite(str(name)+'.png', crop_img)
                 counter = counter + 1
                 print("Imagen: ", counter)
                 print("\tOjo 1 x: ", e1x, " - Ojo 1 y: ", e1y)
@@ -55,3 +58,7 @@ while True:
 # Release the camera and close the windows
 cap.release();
 cv2.destroyAllWindows()
+
+bet_image = get_image()
+plt.imshow("photo/" + bet_image)
+plt.show()

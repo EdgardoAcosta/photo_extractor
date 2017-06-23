@@ -10,9 +10,9 @@ outImg = cv2.imread('base_img.png')
 
 #aligner:
 def align(img):
-    
+    print()
 
-# Load the videocapture
+#Load the videocapture
 cap = cv2.VideoCapture(0)
 # Initialize the counter of images to been taken
 counter = 0
