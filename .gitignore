@@ -3,3 +3,4 @@
 cropped_image/*
 compare.py
 cropped_image/
+__pycached__/
