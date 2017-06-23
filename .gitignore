@@ -1,5 +1,5 @@
 *.png
 cropped_image/*
 cropped_image/
-__pycached__/
+__pycache__/*
 .idea/
