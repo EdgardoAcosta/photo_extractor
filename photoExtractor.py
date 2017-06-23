@@ -19,15 +19,15 @@ while True:
     faces = face_cascade.detectMultiScale(gray, 1.3, 5)
     # For all the different dimentions of faces we find in the image:
     for(x, y, w, h) in faces:
-        print (h)
-        print(w)
-        print("----")
+        #print (h)
+        #print(w)
+        #print("----")
         # Add some values to the face detected in order to cover all the rectangle of the picture in the ID card
-        cv2.rectangle(img, (x-25, y-30), (x+w+25, y+h+60), (255, 0, 0), 2)
+        cv2.rectangle(img, (x-25, y-40), (x+w+15, y+h+58), (255, 0, 0), 2)
         # If the height and width are as expected, and haven't been taken 10 correct photos yet:137 142
-        if counter < 10 and h >= 132 and h <= 140 and w >= 132 and w <= 140:
+        if counter < 10 and h >= 138 and h <= 147 and w >= 138 and w <= 147:
             # Crop the photo of the ID card:
-            crop_img = img[y-27:y+h+70,x-24:x+w+24]
+            crop_img = img[y-38:y+h+56,x-23:x+w+17]
             # Apply Haar Cascade to the eyes in the cropped images in gray scale:
             eye_gray = cv2.cvtColor(crop_img, cv2.COLOR_BGR2GRAY)
             eyes = eye_cascade.detectMultiScale(eye_gray)
@@ -49,9 +49,9 @@ while True:
                 cv2.imwrite(str(name)+'.png', crop_img)
                 counter = counter + 1
                 print("Imagen: ", counter)
-                print("\tOjo 1 x: ", e1x, " - Ojo 1 y: ", e1y)
-                print("\tOjo 2 x: ", e2x, " - Ojo 2 y: ", e2y)
-                print()
+                #print("\tOjo 1 x: ", e1x, " - Ojo 1 y: ", e1y)
+                #print("\tOjo 2 x: ", e2x, " - Ojo 2 y: ", e2y)
+                #print()
     # Always show what the webcam is seeing, and clase the program when ESC is pressed or when we reach the 10 img cropped:
     cv2.imshow('Webcam Scanner', img)
     k = cv2.waitKey(30) & 0xff
