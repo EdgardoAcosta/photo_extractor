@@ -19,11 +19,13 @@ while True:
     faces = face_cascade.detectMultiScale(gray, 1.3, 5)
     # For all the different dimentions of faces we find in the image:
     for(x, y, w, h) in faces:
-
+        print (h)
+        print(w)
+        print("----")
         # Add some values to the face detected in order to cover all the rectangle of the picture in the ID card
         cv2.rectangle(img, (x-25, y-30), (x+w+25, y+h+60), (255, 0, 0), 2)
-        # If the height and width are as expected, and haven't been taken 10 correct photos yet:
-        if counter < 10 and h >= 86 and h <= 88 and w >= 86 and w <= 88:
+        # If the height and width are as expected, and haven't been taken 10 correct photos yet:137 142
+        if counter < 10 and h >= 132 and h <= 140 and w >= 132 and w <= 140:
             # Crop the photo of the ID card:
             crop_img = img[y-27:y+h+70,x-24:x+w+24]
             # Apply Haar Cascade to the eyes in the cropped images in gray scale:
@@ -62,6 +64,7 @@ cv2.destroyAllWindows()
 best_image = get_image()
 print("The best images is: " + best_image)
 best_image = cv2.cvtColor(cv2.imread("photos/" + best_image), cv2.COLOR_BGR2RGB)
+
 plt.imshow(best_image)
 plt.axis("off")
 plt.show()
