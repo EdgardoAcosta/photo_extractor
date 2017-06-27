@@ -28,8 +28,9 @@ So you only have to put the ID card in front of your webcam, and let the magic b
 
 ### Credits
 [Carlos Córdova](https://github.com/Oberyn18) and [Edgardo Acosta](https://github.com/EdgardoAcosta)
-This project was part of the course of Image Processing in the USP (Universidade de Sao Paulo) - Sao Carlos.
-June - 2017
+
+*This project was part of the course of Image Processing in the USP (Universidade de Sao Paulo) - Sao Carlos.
+June - 2017*
 
 
 
