@@ -13,7 +13,7 @@ cap = cv2.VideoCapture(0)
 # Initialize the counter of images to been taken
 counter = 0
 #Number of image to considerate
-max_image = sys.argv[1]
+max_image = int(sys.argv[1])
 while True:
     # Capture an image from the videocam to process it
     ret, img = cap.read()

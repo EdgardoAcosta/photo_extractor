@@ -14,8 +14,9 @@ cd procesamiento_de_imagen/
 python photoExtractor.py #Number_of_images_to_take(int)
 ```
 Then you should have a window as this:
+![Alt text](/screenshot/screenshot1.png "Initialize program")
+![Alt text](/screenshot/screenshot2.png "Running program")
 
-[INSERTE IMAGEN]
 
 So you only have to put the ID card in front of your webcam, and let the magic begin!
 
