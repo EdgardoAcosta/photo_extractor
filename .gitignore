@@ -1,4 +1,3 @@
-*.png
 cropped_image/*
 cropped_image/
 __pycache__/*
