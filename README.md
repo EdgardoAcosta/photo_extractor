@@ -10,7 +10,7 @@ To run the program, you should have downloaded, installed an running in your PC/
 ### Usage
 To run the program, open the command line and write:
 ```
-cd procesamiento_de_imagen/
+cd photo_extractor/
 python photoExtractor.py #Number_of_images_to_take(int)
 ```
 Then you should have a window as this:
